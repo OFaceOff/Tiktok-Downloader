@@ -45,7 +45,7 @@
             border-left: 4px solid #00c851;
             padding: 12px 16px 12px 20px;
             border-radius: 8px;
-            font: 600 14px system-ui, -apple-system, sans-serif;
+            font: 600 14px system-ui, -apple-system, sans-serif; 
             box-shadow: 0 8px 24px rgba(0,0,0,0.5);
             z-index: 9999999;
             opacity: 0;
