@@ -18,32 +18,6 @@ Tik Downloader is a modern UserScript that integrates directly into TikTok's int
 
 ---
 
-## 📑 Table of Contents
-
-### 🇺🇸 English
-- Features
-- Project Structure
-- Client vs Standalone
-- How It Works
-- Technologies
-- Installation
-- Automatic Updates
-- Privacy
-- License
-
-### 🇧🇷 Português
-- Recursos
-- Estrutura do Projeto
-- Client vs Standalone
-- Como Funciona
-- Tecnologias
-- Instalação
-- Atualizações Automáticas
-- Privacidade
-- Licença
-
----
-
 # 🇺🇸 English
 
 ## ✨ Features
