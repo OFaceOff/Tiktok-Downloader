@@ -302,14 +302,32 @@
                                     🚀✨</div>
                             </div>
 
-                            <div class="absolute bottom-10 left-6">
-                                <div class="relative group flex items-center justify-center w-14 h-14">
-                                    <div class="absolute inset-0 bg-primary rounded-full animate-ping opacity-40"></div>
-                                    <div
-                                        class="relative w-full h-full bg-gradient-to-tr from-primary to-rose-400 rounded-full flex items-center justify-center shadow-lg shadow-primary/50 border-2 border-white/20 z-10">
-                                        <i data-lucide="download" class="w-6 h-6 text-white"></i>
+                            <div id="mockup-container" class="absolute bottom-10 left-6 cursor-pointer z-20"
+                                onclick="triggerEasterEgg()">
+                                <div id="mockup-progress"
+                                    class="absolute bottom-16 left-0 w-52 bg-[#090b14]/95 backdrop-blur-xl rounded-xl p-3.5 border border-white/10 opacity-0 translate-y-4 transition-all duration-300 pointer-events-none shadow-2xl z-30">
+                                    <div class="flex justify-between items-center mb-2.5">
+                                        <span class="text-white text-xs font-bold tracking-wide"
+                                            id="mockup-status">Downloading...</span>
+                                        <span class="text-primary text-xs font-black" id="mockup-pct">0%</span>
                                     </div>
-                                    <div class="absolute left-16 px-4 py-2 bg-slate-900 text-white text-xs font-bold rounded-lg border border-white/10 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap shadow-xl pointer-events-none"
+                                    <div class="w-full h-1.5 bg-white/5 rounded-full overflow-hidden">
+                                        <div id="mockup-bar"
+                                            class="h-full bg-gradient-to-r from-primary to-rose-400 w-0 transition-all duration-200 ease-out">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="relative group flex items-center justify-center w-14 h-14">
+                                    <div id="mockup-ping"
+                                        class="absolute inset-0 bg-primary rounded-full animate-ping opacity-40"></div>
+                                    <div id="mockup-btn"
+                                        class="relative w-full h-full bg-gradient-to-tr from-primary to-rose-400 rounded-full flex items-center justify-center shadow-lg shadow-primary/50 border-2 border-white/20 z-10 transition-all duration-300">
+                                        <i id="mockup-icon" data-lucide="download"
+                                            class="w-6 h-6 text-white transition-transform duration-300"></i>
+                                    </div>
+                                    <div id="mockup-tooltip"
+                                        class="absolute left-16 px-4 py-2 bg-slate-900 text-white text-xs font-bold rounded-lg border border-white/10 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap shadow-xl pointer-events-none"
                                         data-i18n="mockup_tooltip">
                                         Baixar Sem Marca D'água
                                     </div>
@@ -350,10 +368,6 @@
                 </div>
 
                 <div class="flex flex-col md:flex-row gap-8 relative items-center justify-center">
-                    <div
-                        class="hidden md:block absolute top-1/2 left-[15%] right-[15%] h-1 bg-gradient-to-r from-primary/0 via-primary/30 to-primary/0 -translate-y-1/2 z-0">
-                    </div>
-
                     <div
                         class="relative glass-card p-8 rounded-3xl z-10 w-full md:w-1/3 hover:-translate-y-2 transition-transform duration-300 border-t border-white/10 group">
                         <div
@@ -1095,6 +1109,89 @@
             } catch (error) {
                 const prefix = translations[currentLang].current_version_prefix;
                 document.getElementById('current-version-display').innerHTML = '<span data-i18n="current_version_prefix">' + prefix + '</span>3.0.0';
+            }
+        }
+
+        let isMockupAnimating = false;
+        function triggerEasterEgg() {
+            if (isMockupAnimating) return;
+            isMockupAnimating = true;
+
+            const btn = document.getElementById('mockup-btn');
+            const icon = document.getElementById('mockup-icon');
+            const ping = document.getElementById('mockup-ping');
+            const progressCard = document.getElementById('mockup-progress');
+            const bar = document.getElementById('mockup-bar');
+            const pct = document.getElementById('mockup-pct');
+            const status = document.getElementById('mockup-status');
+            const tooltip = document.getElementById('mockup-tooltip');
+
+            tooltip.style.opacity = '0';
+            ping.style.display = 'none';
+
+            btn.classList.remove('from-primary', 'to-rose-400', 'shadow-primary/50');
+            btn.classList.add('bg-slate-800', 'border-slate-600');
+            icon.setAttribute('data-lucide', 'loader-2');
+            icon.classList.add('animate-spin');
+            lucide.createIcons();
+
+            status.innerText = currentLang === 'pt' ? 'Baixando HD...' : 'Downloading HD...';
+            status.classList.remove('text-green-400');
+            status.classList.add('text-white');
+            pct.classList.remove('text-green-400');
+            pct.classList.add('text-primary');
+            bar.classList.remove('from-green-400', 'to-emerald-400');
+            bar.classList.add('from-primary', 'to-rose-400');
+
+            progressCard.classList.remove('opacity-0', 'translate-y-4');
+            progressCard.classList.add('opacity-100', 'translate-y-0');
+
+            let percent = 0;
+            const interval = setInterval(() => {
+                percent += Math.floor(Math.random() * 20) + 10;
+                if (percent > 100) percent = 100;
+                pct.innerText = percent + '%';
+                bar.style.width = percent + '%';
+
+                if (percent === 100) {
+                    clearInterval(interval);
+                    setTimeout(finishDownload, 400);
+                }
+            }, 250);
+
+            function finishDownload() {
+                status.innerText = currentLang === 'pt' ? 'Salvo com sucesso!' : 'Saved successfully!';
+                status.classList.remove('text-white');
+                status.classList.add('text-green-400');
+                pct.classList.remove('text-primary');
+                pct.classList.add('text-green-400');
+                bar.classList.remove('from-primary', 'to-rose-400');
+                bar.classList.add('from-green-400', 'to-emerald-400');
+
+                btn.classList.remove('bg-slate-800', 'border-slate-600');
+                btn.classList.add('from-green-500', 'to-emerald-400', 'shadow-green-500/50');
+                icon.classList.remove('animate-spin');
+                icon.setAttribute('data-lucide', 'check');
+                lucide.createIcons();
+
+                setTimeout(() => {
+                    progressCard.classList.remove('opacity-100', 'translate-y-0');
+                    progressCard.classList.add('opacity-0', 'translate-y-4');
+
+                    setTimeout(() => {
+                        bar.style.width = '0%';
+                        pct.innerText = '0%';
+
+                        btn.classList.remove('from-green-500', 'to-emerald-400', 'shadow-green-500/50');
+                        btn.classList.add('from-primary', 'to-rose-400', 'shadow-primary/50');
+                        icon.setAttribute('data-lucide', 'download');
+                        lucide.createIcons();
+
+                        tooltip.style.opacity = '';
+                        ping.style.display = '';
+                        isMockupAnimating = false;
+                    }, 300);
+                }, 3000);
             }
         }
     </script>
