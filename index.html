@@ -132,15 +132,7 @@
         }
     </style>
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#fe2c55',
-                    }
-                }
-            }
-        }
+        tailwind.config = { theme: { extend: { colors: { primary: '#fe2c55', } } } }
     </script>
 </head>
 
@@ -164,14 +156,14 @@
 
                 <div class="hidden md:flex items-center gap-8 bg-white/5 px-6 py-2 rounded-full border border-white/5">
                     <button data-target="home" onclick="switchTab('home')"
-                        class="nav-btn active text-slate-400 hover:text-white text-sm font-semibold transition-all">Visão
-                        Geral</button>
+                        class="nav-btn active text-slate-400 hover:text-white text-sm font-semibold transition-all"><span
+                            data-i18n="nav_overview">Visão Geral</span></button>
                     <button data-target="tutorial" onclick="switchTab('tutorial')"
-                        class="nav-btn text-slate-400 hover:text-white text-sm font-semibold transition-all">Documentação
-                        & Instalação</button>
+                        class="nav-btn text-slate-400 hover:text-white text-sm font-semibold transition-all"><span
+                            data-i18n="nav_docs">Documentação & Instalação</span></button>
                 </div>
 
-                <div class="hidden md:flex gap-3">
+                <div class="hidden md:flex items-center gap-3">
                     <a href="https://github.com/OFaceOff/Tiktok-Downloader" target="_blank" rel="noreferrer"
                         class="flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white px-5 py-2.5 rounded-full text-sm font-semibold transition-all border border-white/10 hover:scale-105">
                         <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2"
@@ -180,7 +172,7 @@
                                 d="M15 22v-4a4.8 4.8 0 0 0-1-3.02c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A4.37 4.37 0 0 0 9 18v4">
                             </path>
                             <path d="M9 18c-4.51 2-5-2-7-2"></path>
-                        </svg> GitHub Repo
+                        </svg> <span data-i18n="nav_github">GitHub Repo</span>
                     </a>
                     <a href="https://discord.gg/6wrtGpt9bg" target="_blank" rel="noreferrer"
                         class="flex items-center gap-2 bg-[#5865F2]/20 hover:bg-[#5865F2]/40 text-white px-5 py-2.5 rounded-full text-sm font-semibold transition-all border border-[#5865F2]/50 hover:scale-105">
@@ -188,11 +180,21 @@
                             <path
                                 d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.31,60,73.31,53s5-12.74,11.43-12.74S96.3,46,96.19,53,91.08,65.69,84.69,65.69Z">
                             </path>
-                        </svg> Discord
+                        </svg> <span data-i18n="nav_discord">Discord</span>
                     </a>
+                    <button onclick="toggleLanguage()"
+                        class="flex items-center gap-2 bg-white/5 hover:bg-white/10 text-white px-4 py-2.5 rounded-full text-sm font-semibold transition-all border border-white/5 ml-2"
+                        title="Toggle Language">
+                        <i data-lucide="globe" class="w-4 h-4 text-slate-300"></i> <span id="lang-indicator">PT</span>
+                    </button>
                 </div>
 
-                <div class="md:hidden z-50 relative">
+                <div class="md:hidden z-50 relative flex items-center gap-4">
+                    <button onclick="toggleLanguage()"
+                        class="flex items-center gap-1.5 text-white bg-white/5 px-3 py-1.5 rounded-full border border-white/5">
+                        <i data-lucide="globe" class="w-4 h-4"></i> <span id="mobile-lang-indicator"
+                            class="text-xs font-bold">PT</span>
+                    </button>
                     <button onclick="toggleMobileMenu()" class="p-2 text-slate-400 relative z-50">
                         <i data-lucide="menu" id="menu-icon" class="w-6 h-6"></i>
                     </button>
@@ -204,11 +206,11 @@
     <div id="mobile-menu"
         class="fixed inset-0 z-40 bg-[#090b14]/95 backdrop-blur-xl pt-24 px-6 flex-col gap-4 hidden opacity-0 transition-opacity duration-300">
         <button onclick="switchTab('home'); toggleMobileMenu();"
-            class="text-2xl font-bold text-left py-4 border-b border-white/10 text-white hover:text-primary">Visão
-            Geral</button>
+            class="text-2xl font-bold text-left py-4 border-b border-white/10 text-white hover:text-primary"><span
+                data-i18n="mobile_overview">Visão Geral</span></button>
         <button onclick="switchTab('tutorial'); toggleMobileMenu();"
-            class="text-2xl font-bold text-left py-4 border-b border-white/10 text-white hover:text-primary">Documentação
-            & Instalação</button>
+            class="text-2xl font-bold text-left py-4 border-b border-white/10 text-white hover:text-primary"><span
+                data-i18n="mobile_docs">Documentação & Instalação</span></button>
         <a href="https://github.com/OFaceOff/Tiktok-Downloader" target="_blank"
             class="mt-8 flex items-center gap-2 text-xl text-white">
             <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"
@@ -217,7 +219,7 @@
                     d="M15 22v-4a4.8 4.8 0 0 0-1-3.02c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A4.37 4.37 0 0 0 9 18v4">
                 </path>
                 <path d="M9 18c-4.51 2-5-2-7-2"></path>
-            </svg> Ver no GitHub
+            </svg> <span data-i18n="mobile_github">Ver no GitHub</span>
         </a>
         <a href="https://discord.gg/6wrtGpt9bg" target="_blank"
             class="mt-4 flex items-center gap-2 text-xl text-[#5865F2]">
@@ -225,7 +227,7 @@
                 <path
                     d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.31,60,73.31,53s5-12.74,11.43-12.74S96.3,46,96.19,53,91.08,65.69,84.69,65.69Z">
                 </path>
-            </svg> Comunidade
+            </svg> <span data-i18n="mobile_discord">Comunidade</span>
         </a>
     </div>
 
@@ -240,19 +242,20 @@
                                 class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
                             <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
                         </span>
-                        <span id="current-version-display">Versão atual...</span>
+                        <span id="current-version-display"><span data-i18n="current_version_prefix">Versão atual
+                            </span>...</span>
                     </div>
 
-                    <h1
-                        class="animate-fade-in delay-100 text-6xl lg:text-7xl font-black text-white leading-[1.1] tracking-tight">
+                    <h1 class="animate-fade-in delay-100 text-6xl lg:text-7xl font-black text-white leading-[1.1] tracking-tight"
+                        data-i18n="hero_title">
                         Baixe vídeos do TikTok <br />
                         <span
-                            class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-rose-400 to-orange-400">
-                            como um Pro.
-                        </span>
+                            class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-rose-400 to-orange-400">como
+                            um Pro.</span>
                     </h1>
 
-                    <p class="animate-fade-in delay-200 text-xl text-slate-400 max-w-xl leading-relaxed font-medium">
+                    <p class="animate-fade-in delay-200 text-xl text-slate-400 max-w-xl leading-relaxed font-medium"
+                        data-i18n="hero_subtitle">
                         O Userscript definitivo. Injeta uma UI minimalista diretamente no site. Sem anúncios, em
                         qualidade HD, sem marcas d'água e 100% open-source.
                     </p>
@@ -260,14 +263,15 @@
                     <div class="animate-fade-in delay-300 flex flex-col sm:flex-row gap-5 pt-4">
                         <button onclick="switchTab('tutorial')"
                             class="group flex items-center justify-center gap-3 bg-gradient-to-r from-primary to-rose-500 hover:from-rose-500 hover:to-primary text-white px-8 py-4 rounded-full font-bold text-lg shadow-[0_0_30px_rgba(254,44,85,0.4)] transition-all hover:scale-105">
-                            Instalar Agora <i data-lucide="arrow-right"
+                            <span data-i18n="hero_btn_install">Instalar Agora</span> <i data-lucide="arrow-right"
                                 class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
                         </button>
 
                         <a href="https://chromewebstore.google.com/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo"
                             target="_blank" rel="noreferrer"
                             class="flex items-center justify-center gap-3 glass-card hover:bg-white/10 text-white px-8 py-4 rounded-full font-semibold transition-all hover:scale-105">
-                            <i data-lucide="external-link" class="w-5 h-5"></i> Obter Tampermonkey
+                            <i data-lucide="external-link" class="w-5 h-5"></i> <span data-i18n="hero_btn_tamper">Obter
+                                Tampermonkey</span>
                         </a>
                     </div>
                 </div>
@@ -279,7 +283,7 @@
                             <div class="flex gap-2">
                                 <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
                                 <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
-                                <div className="w-3 h-3 rounded-full bg-green-500/80"></div>
+                                <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
                             </div>
                             <div
                                 class="mx-auto bg-white/5 rounded-md text-[11px] px-8 py-1.5 text-slate-400 font-mono flex items-center gap-2">
@@ -294,7 +298,8 @@
                             <div class="absolute bottom-28 left-6 text-white space-y-2 drop-shadow-md">
                                 <div class="font-bold text-lg flex items-center gap-2">@ofaceoff <i data-lucide="check"
                                         class="w-3.5 h-3.5 bg-blue-500 rounded-full p-0.5 text-white"></i></div>
-                                <div class="text-sm font-medium">Testando o novo Tik Downloader! 🚀✨</div>
+                                <div class="text-sm font-medium" data-i18n="mockup_text">Testando o novo Tik Downloader!
+                                    🚀✨</div>
                             </div>
 
                             <div class="absolute bottom-10 left-6">
@@ -304,9 +309,8 @@
                                         class="relative w-full h-full bg-gradient-to-tr from-primary to-rose-400 rounded-full flex items-center justify-center shadow-lg shadow-primary/50 border-2 border-white/20 z-10">
                                         <i data-lucide="download" class="w-6 h-6 text-white"></i>
                                     </div>
-
-                                    <div
-                                        class="absolute left-16 px-4 py-2 bg-slate-900 text-white text-xs font-bold rounded-lg border border-white/10 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap shadow-xl pointer-events-none">
+                                    <div class="absolute left-16 px-4 py-2 bg-slate-900 text-white text-xs font-bold rounded-lg border border-white/10 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap shadow-xl pointer-events-none"
+                                        data-i18n="mockup_tooltip">
                                         Baixar Sem Marca D'água
                                     </div>
                                 </div>
@@ -320,29 +324,29 @@
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-x divide-white/5">
                     <div>
                         <div class="text-4xl font-black text-white mb-2">100%</div>
-                        <div class="text-slate-400 font-medium">Gratuito</div>
+                        <div class="text-slate-400 font-medium" data-i18n="stat_1_desc">Gratuito</div>
                     </div>
                     <div>
                         <div class="text-4xl font-black text-white mb-2">HD</div>
-                        <div class="text-slate-400 font-medium">Qualidade Máxima</div>
+                        <div class="text-slate-400 font-medium" data-i18n="stat_2_desc">Qualidade Máxima</div>
                     </div>
                     <div>
                         <div class="text-4xl font-black text-white mb-2">Zero</div>
-                        <div class="text-slate-400 font-medium">Marcas d'Água</div>
+                        <div class="text-slate-400 font-medium" data-i18n="stat_3_desc">Marcas d'Água</div>
                     </div>
                     <div>
                         <div class="text-4xl font-black text-white mb-2 flex items-center justify-center gap-2">Open
                         </div>
-                        <div class="text-slate-400 font-medium">Source</div>
+                        <div class="text-slate-400 font-medium" data-i18n="stat_4_desc">Source</div>
                     </div>
                 </div>
             </section>
 
             <section class="space-y-16">
                 <div class="text-center space-y-4">
-                    <h2 class="text-4xl font-black text-white">Fluxo de Trabalho Elegante</h2>
-                    <p class="text-xl text-slate-400 max-w-2xl mx-auto">Esqueça sites lotados de anúncios. A mágica
-                        acontece diretamente na página.</p>
+                    <h2 class="text-4xl font-black text-white" data-i18n="flow_title">Fluxo de Trabalho Elegante</h2>
+                    <p class="text-xl text-slate-400 max-w-2xl mx-auto" data-i18n="flow_subtitle">Esqueça sites lotados
+                        de anúncios. A mágica acontece diretamente na página.</p>
                 </div>
 
                 <div class="flex flex-col md:flex-row gap-8 relative items-center justify-center">
@@ -358,9 +362,9 @@
                         <div
                             class="bg-white/5 w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-white/10 transition-colors">
                             <i data-lucide="code-2" class="w-8 h-8 text-blue-400"></i></div>
-                        <h3 class="text-2xl font-bold text-white mb-3">Injeção Limpa</h3>
-                        <p class="text-slate-400 leading-relaxed">O Client Loader insere um botão nativo no DOM do
-                            TikTok, sem quebrar o layout original.</p>
+                        <h3 class="text-2xl font-bold text-white mb-3" data-i18n="flow_1_title">Injeção Limpa</h3>
+                        <p class="text-slate-400 leading-relaxed" data-i18n="flow_1_desc">O Client Loader insere um
+                            botão nativo no DOM do TikTok, sem quebrar o layout original.</p>
                     </div>
 
                     <div
@@ -371,9 +375,9 @@
                         <div
                             class="bg-white/5 w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-white/10 transition-colors">
                             <i data-lucide="globe" class="w-8 h-8 text-primary"></i></div>
-                        <h3 class="text-2xl font-bold text-white mb-3">Bypass de CORS</h3>
-                        <p class="text-slate-400 leading-relaxed">O script comunica-se com a API do TikWM em segundo
-                            plano de forma invisível via Tampermonkey.</p>
+                        <h3 class="text-2xl font-bold text-white mb-3" data-i18n="flow_2_title">Bypass de CORS</h3>
+                        <p class="text-slate-400 leading-relaxed" data-i18n="flow_2_desc">O script comunica-se com a API
+                            do TikWM em segundo plano de forma invisível via Tampermonkey.</p>
                     </div>
 
                     <div
@@ -384,17 +388,18 @@
                         <div
                             class="bg-white/5 w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-white/10 transition-colors">
                             <i data-lucide="download" class="w-8 h-8 text-emerald-400"></i></div>
-                        <h3 class="text-2xl font-bold text-white mb-3">Download Direto</h3>
-                        <p class="text-slate-400 leading-relaxed">O vídeo em HD é entregue diretamente no seu navegador,
-                            com barra de progresso em tempo real.</p>
+                        <h3 class="text-2xl font-bold text-white mb-3" data-i18n="flow_3_title">Download Direto</h3>
+                        <p class="text-slate-400 leading-relaxed" data-i18n="flow_3_desc">O vídeo em HD é entregue
+                            diretamente no seu navegador, com barra de progresso em tempo real.</p>
                     </div>
                 </div>
             </section>
 
             <section class="space-y-12 pt-12">
                 <div class="text-left space-y-4 mb-12">
-                    <h2 class="text-4xl font-black text-white">Tecnologia Embarcada</h2>
-                    <p class="text-xl text-slate-400">Recursos de nível enterprise dentro de um Userscript.</p>
+                    <h2 class="text-4xl font-black text-white" data-i18n="tech_title">Tecnologia Embarcada</h2>
+                    <p class="text-xl text-slate-400" data-i18n="tech_subtitle">Recursos de nível enterprise dentro de
+                        um Userscript.</p>
                 </div>
 
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -404,10 +409,11 @@
                             <div
                                 class="bg-white/5 p-3 rounded-xl border border-white/5 group-hover:scale-110 transition-transform">
                                 <i data-lucide="refresh-cw" class="w-6 h-6 text-blue-400"></i></div>
-                            <h3 class="text-xl font-bold text-white">OTA Updates</h3>
+                            <h3 class="text-xl font-bold text-white" data-i18n="tech_1_title">OTA Updates</h3>
                         </div>
-                        <p class="text-slate-400 leading-relaxed">Nosso Client Loader busca a lógica no GitHub
-                            silenciosamente. Se o script quebrar, você recebe a correção instantaneamente.</p>
+                        <p class="text-slate-400 leading-relaxed" data-i18n="tech_1_desc">Nosso Client Loader busca a
+                            lógica no GitHub silenciosamente. Se o script quebrar, você recebe a correção
+                            instantaneamente.</p>
                     </div>
                     <div
                         class="glass-card p-8 rounded-3xl hover:bg-white/[0.03] transition-all duration-300 group hover:border-white/20 hover:shadow-[0_0_30px_rgba(255,255,255,0.05)] border-t border-white/5">
@@ -415,10 +421,10 @@
                             <div
                                 class="bg-white/5 p-3 rounded-xl border border-white/5 group-hover:scale-110 transition-transform">
                                 <i data-lucide="zap" class="w-6 h-6 text-yellow-400"></i></div>
-                            <h3 class="text-xl font-bold text-white">Performance</h3>
+                            <h3 class="text-xl font-bold text-white" data-i18n="tech_2_title">Performance</h3>
                         </div>
-                        <p class="text-slate-400 leading-relaxed">Escrito em Vanilla JS. Sem bibliotecas pesadas como
-                            jQuery ou React no client-side. Impacto zero no navegador.</p>
+                        <p class="text-slate-400 leading-relaxed" data-i18n="tech_2_desc">Escrito em Vanilla JS. Sem
+                            bibliotecas pesadas como jQuery ou React no client-side. Impacto zero no navegador.</p>
                     </div>
                     <div
                         class="glass-card p-8 rounded-3xl hover:bg-white/[0.03] transition-all duration-300 group hover:border-white/20 hover:shadow-[0_0_30px_rgba(255,255,255,0.05)] border-t border-white/5">
@@ -426,10 +432,10 @@
                             <div
                                 class="bg-white/5 p-3 rounded-xl border border-white/5 group-hover:scale-110 transition-transform">
                                 <i data-lucide="shield" class="w-6 h-6 text-emerald-400"></i></div>
-                            <h3 class="text-xl font-bold text-white">Tratamento de Erros</h3>
+                            <h3 class="text-xl font-bold text-white" data-i18n="tech_3_title">Tratamento de Erros</h3>
                         </div>
-                        <p class="text-slate-400 leading-relaxed">Usamos UI de Toast integrada para informar se o vídeo
-                            foi deletado, é privado ou se houve erro de rede.</p>
+                        <p class="text-slate-400 leading-relaxed" data-i18n="tech_3_desc">Usamos UI de Toast integrada
+                            para informar se o vídeo foi deletado, é privado ou se houve erro de rede.</p>
                     </div>
                     <div
                         class="glass-card p-8 rounded-3xl hover:bg-white/[0.03] transition-all duration-300 group hover:border-white/20 hover:shadow-[0_0_30px_rgba(255,255,255,0.05)] border-t border-white/5">
@@ -437,10 +443,10 @@
                             <div
                                 class="bg-white/5 p-3 rounded-xl border border-white/5 group-hover:scale-110 transition-transform">
                                 <i data-lucide="users" class="w-6 h-6 text-purple-400"></i></div>
-                            <h3 class="text-xl font-bold text-white">Internacionalização</h3>
+                            <h3 class="text-xl font-bold text-white" data-i18n="tech_4_title">Internacionalização</h3>
                         </div>
-                        <p class="text-slate-400 leading-relaxed">O script detecta o idioma do seu navegador nativamente
-                            adaptando-se para Português ou Inglês.</p>
+                        <p class="text-slate-400 leading-relaxed" data-i18n="tech_4_desc">O script detecta o idioma do
+                            seu navegador nativamente adaptando-se para Português ou Inglês.</p>
                     </div>
                     <div
                         class="glass-card p-8 rounded-3xl hover:bg-white/[0.03] transition-all duration-300 group hover:border-white/20 hover:shadow-[0_0_30px_rgba(255,255,255,0.05)] border-t border-white/5">
@@ -448,10 +454,10 @@
                             <div
                                 class="bg-white/5 p-3 rounded-xl border border-white/5 group-hover:scale-110 transition-transform">
                                 <i data-lucide="smartphone" class="w-6 h-6 text-pink-400"></i></div>
-                            <h3 class="text-xl font-bold text-white">Extração Dinâmica</h3>
+                            <h3 class="text-xl font-bold text-white" data-i18n="tech_5_title">Extração Dinâmica</h3>
                         </div>
-                        <p class="text-slate-400 leading-relaxed">O arquivo não é salvo como 'video.mp4'. Usamos Regex
-                            para extrair o @usuario para uma nomenclatura perfeita.</p>
+                        <p class="text-slate-400 leading-relaxed" data-i18n="tech_5_desc">O arquivo não é salvo como
+                            'video.mp4'. Usamos Regex para extrair o @usuario para uma nomenclatura perfeita.</p>
                     </div>
                     <div
                         class="glass-card p-8 rounded-3xl hover:bg-white/[0.03] transition-all duration-300 group hover:border-white/20 hover:shadow-[0_0_30px_rgba(255,255,255,0.05)] border-t border-white/5">
@@ -459,60 +465,64 @@
                             <div
                                 class="bg-white/5 p-3 rounded-xl border border-white/5 group-hover:scale-110 transition-transform">
                                 <i data-lucide="lock" class="w-6 h-6 text-slate-300"></i></div>
-                            <h3 class="text-xl font-bold text-white">Transparente</h3>
+                            <h3 class="text-xl font-bold text-white" data-i18n="tech_6_title">Transparente</h3>
                         </div>
-                        <p class="text-slate-400 leading-relaxed">Código aberto. Sem ofuscação, sem rastreadores. Você
-                            pode ler o que cada linha faz no nosso repositório.</p>
+                        <p class="text-slate-400 leading-relaxed" data-i18n="tech_6_desc">Código aberto. Sem ofuscação,
+                            sem rastreadores. Você pode ler o que cada linha faz no nosso repositório.</p>
                     </div>
                 </div>
             </section>
 
             <section class="max-w-3xl mx-auto space-y-8 pt-12">
-                <h2 class="text-4xl font-black text-white text-center mb-12">Dúvidas Frequentes</h2>
+                <h2 class="text-4xl font-black text-white text-center mb-12" data-i18n="faq_title">Dúvidas Frequentes
+                </h2>
                 <div class="space-y-4">
                     <div class="glass-card rounded-2xl overflow-hidden border-t border-white/5 faq-item">
                         <button
                             class="w-full text-left px-6 py-5 flex justify-between items-center hover:bg-white/[0.02]"
                             onclick="toggleFaq(this)">
-                            <span class="font-bold text-lg text-white">Isso funciona no celular?</span>
+                            <span class="font-bold text-lg text-white" data-i18n="faq_1_q">Isso funciona no
+                                celular?</span>
                             <i data-lucide="chevron-down"
                                 class="w-5 h-5 text-slate-400 transition-transform duration-300 icon"></i>
                         </button>
                         <div
                             class="px-6 text-slate-400 leading-relaxed max-h-0 opacity-0 overflow-hidden transition-all duration-300 content">
-                            <div class="pb-6">O script foi desenhado para navegadores Desktop (Chrome, Edge, Firefox,
-                                Safari) utilizando extensões gerenciadoras. Navegadores mobile padrão geralmente não
-                                suportam extensões como Tampermonkey nativamente.</div>
+                            <div class="pb-6" data-i18n="faq_1_a">O script foi desenhado para navegadores Desktop
+                                (Chrome, Edge, Firefox, Safari) utilizando extensões gerenciadoras. Navegadores mobile
+                                padrão geralmente não suportam extensões como Tampermonkey nativamente.</div>
                         </div>
                     </div>
                     <div class="glass-card rounded-2xl overflow-hidden border-t border-white/5 faq-item">
                         <button
                             class="w-full text-left px-6 py-5 flex justify-between items-center hover:bg-white/[0.02]"
                             onclick="toggleFaq(this)">
-                            <span class="font-bold text-lg text-white">A minha conta do TikTok pode ser banida?</span>
+                            <span class="font-bold text-lg text-white" data-i18n="faq_2_q">A minha conta do TikTok pode
+                                ser banida?</span>
                             <i data-lucide="chevron-down"
                                 class="w-5 h-5 text-slate-400 transition-transform duration-300 icon"></i>
                         </button>
                         <div
                             class="px-6 text-slate-400 leading-relaxed max-h-0 opacity-0 overflow-hidden transition-all duration-300 content">
-                            <div class="pb-6">Não. O script atua no cliente (seu navegador) apenas lendo a URL pública
-                                do vídeo e fazendo o download externamente. Ele não interage com sua conta logada.</div>
+                            <div class="pb-6" data-i18n="faq_2_a">Não. O script atua no cliente (seu navegador) apenas
+                                lendo a URL pública do vídeo e fazendo o download externamente. Ele não interage com sua
+                                conta logada.</div>
                         </div>
                     </div>
                     <div class="glass-card rounded-2xl overflow-hidden border-t border-white/5 faq-item">
                         <button
                             class="w-full text-left px-6 py-5 flex justify-between items-center hover:bg-white/[0.02]"
                             onclick="toggleFaq(this)">
-                            <span class="font-bold text-lg text-white">Por que usar o 'Loader' em vez do código
-                                inteiro?</span>
+                            <span class="font-bold text-lg text-white" data-i18n="faq_3_q">Por que usar o 'Loader' em
+                                vez do código inteiro?</span>
                             <i data-lucide="chevron-down"
                                 class="w-5 h-5 text-slate-400 transition-transform duration-300 icon"></i>
                         </button>
                         <div
                             class="px-6 text-slate-400 leading-relaxed max-h-0 opacity-0 overflow-hidden transition-all duration-300 content">
-                            <div class="pb-6">O código fonte muda frequentemente para acompanhar as atualizações do
-                                TikTok. O Loader faz a atualização silenciosa para você não precisar reinstalar
-                                manualmente.</div>
+                            <div class="pb-6" data-i18n="faq_3_a">O código fonte muda frequentemente para acompanhar as
+                                atualizações do TikTok. O Loader faz a atualização silenciosa para você não precisar
+                                reinstalar manualmente.</div>
                         </div>
                     </div>
                 </div>
@@ -521,11 +531,10 @@
 
         <div id="tutorial" class="tab-content max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
             <div class="space-y-6 text-center animate-fade-in">
-                <h1 class="text-5xl font-black text-white tracking-tight">Instalação Simples.</h1>
-                <p class="text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed">
-                    Nós usamos a arquitetura de <strong>Client Loader (Stub)</strong>.
-                    Você instala apenas um cabeçalho pequeno que busca sempre a versão mais recente e segura direto do
-                    nosso GitHub.
+                <h1 class="text-5xl font-black text-white tracking-tight" data-i18n="tut_title">Instalação Simples.</h1>
+                <p class="text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed" data-i18n="tut_subtitle">
+                    Nós usamos a arquitetura de <strong>Client Loader (Stub)</strong>.<br />Você instala apenas um
+                    cabeçalho pequeno que busca sempre a versão mais recente e segura direto do nosso GitHub.
                 </p>
             </div>
 
@@ -537,15 +546,17 @@
                             <i data-lucide="download" class="w-8 h-8 text-blue-400"></i>
                         </div>
                         <div class="space-y-4 flex-1">
-                            <h2 class="text-3xl font-bold text-white">1. O Motor de Execução</h2>
-                            <p class="text-slate-400 text-lg">
+                            <h2 class="text-3xl font-bold text-white" data-i18n="tut_1_title">1. O Motor de Execução
+                            </h2>
+                            <p class="text-slate-400 text-lg" data-i18n="tut_1_desc">
                                 Para rodar qualquer script na web, você precisa de um gerenciador. O
                                 <strong>Tampermonkey</strong> é o mais seguro e utilizado do mundo.
                             </p>
                             <a href="https://chromewebstore.google.com/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo"
                                 target="_blank" rel="noreferrer"
                                 class="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white px-6 py-3 rounded-xl font-bold transition-all shadow-lg shadow-blue-500/20">
-                                Instalar Tampermonkey <i data-lucide="external-link" class="w-4 h-4"></i>
+                                <span data-i18n="tut_1_btn">Instalar Tampermonkey</span> <i data-lucide="external-link"
+                                    class="w-4 h-4"></i>
                             </a>
                         </div>
                     </div>
@@ -558,17 +569,18 @@
                             <i data-lucide="zap" class="w-8 h-8 text-primary"></i>
                         </div>
                         <div class="space-y-4 flex-1">
-                            <h2 class="text-3xl font-bold text-white">2. Instalação Expressa <span
-                                    class="text-sm font-medium bg-primary text-white px-2 py-1 rounded-md ml-2 align-middle">Recomendado</span>
-                            </h2>
-                            <p class="text-slate-400 text-lg">
-                                Com o Tampermonkey instalado, basta clicar no botão mágico abaixo. O navegador irá
-                                interceptar o link e abrir a tela de instalação automaticamente.
+                            <h2 class="text-3xl font-bold text-white"><span data-i18n="tut_2_title">2. Instalação
+                                    Expressa</span> <span
+                                    class="text-sm font-medium bg-primary text-white px-2 py-1 rounded-md ml-2 align-middle"
+                                    data-i18n="tut_2_badge">Recomendado</span></h2>
+                            <p class="text-slate-400 text-lg" data-i18n="tut_2_desc">
+                                Com o Tampermonkey instalado, basta clicar no botão abaixo. O navegador irá interceptar
+                                o link e abrir a tela de instalação automaticamente.
                             </p>
                             <a href="https://raw.githubusercontent.com/OFaceOff/Tiktok-Downloader/main/tikdownloader.client.user.js"
                                 target="_blank" rel="noreferrer"
                                 class="inline-flex items-center gap-2 bg-gradient-to-r from-primary to-rose-500 text-white px-8 py-4 rounded-xl font-bold shadow-lg shadow-primary/30 hover:scale-105 transition-transform">
-                                Instalar Tik Downloader
+                                <span data-i18n="tut_2_btn">Instalar Tik Downloader</span>
                             </a>
                         </div>
                     </div>
@@ -582,8 +594,9 @@
                                 <i data-lucide="code-2" class="w-8 h-8 text-slate-400"></i>
                             </div>
                             <div class="space-y-2 flex-1">
-                                <h2 class="text-3xl font-bold text-white">3. Instalação Manual</h2>
-                                <p class="text-slate-400 text-lg">
+                                <h2 class="text-3xl font-bold text-white" data-i18n="tut_3_title">3. Instalação Manual
+                                </h2>
+                                <p class="text-slate-400 text-lg" data-i18n="tut_3_desc">
                                     Prefere o método raiz? Crie um novo script no painel do Tampermonkey, apague tudo
                                     que estiver lá e cole o <strong>Client Loader</strong> abaixo:
                                 </p>
@@ -600,7 +613,7 @@
                         <div class="text-xs text-slate-500 font-mono tracking-wider">tikdownloader.client.user.js</div>
                         <button id="copy-btn" onclick="copySourceCode()"
                             class="flex items-center gap-2 text-sm font-bold transition-colors px-4 py-2 rounded-lg bg-white/10 text-white hover:bg-white/20">
-                            <i data-lucide="copy" class="w-4 h-4"></i> Copiar Código
+                            <i data-lucide="copy" class="w-4 h-4"></i> <span data-i18n="tut_3_copy">Copiar Código</span>
                         </button>
                     </div>
 
@@ -757,8 +770,9 @@
                             <i data-lucide="check-circle" class="w-8 h-8 text-[#5865F2]"></i>
                         </div>
                         <div class="space-y-4 flex-1">
-                            <h2 class="text-3xl font-bold text-white">4. Verificação & Suporte</h2>
-                            <p class="text-slate-400 text-lg">
+                            <h2 class="text-3xl font-bold text-white" data-i18n="tut_4_title">4. Verificação & Suporte
+                            </h2>
+                            <p class="text-slate-400 text-lg" data-i18n="tut_4_desc">
                                 Após a instalação, dê um <strong>F5</strong> nesta página ou acesse o seu TikTok. Nossa
                                 aplicação deverá aparecer na lateral esquerda da tela. Se apareceu, parabéns! Você está
                                 com a última versão funcionando perfeitamente.
@@ -767,9 +781,10 @@
                             <div
                                 class="bg-white/5 p-5 rounded-2xl border border-white/10 mt-4 flex flex-col sm:flex-row items-center gap-6 justify-between">
                                 <div class="space-y-1">
-                                    <h3 class="text-white font-bold">Não apareceu ou deu algum erro?</h3>
-                                    <p class="text-slate-400 text-sm">Tente reinstalar o script. Se o problema
-                                        persistir, abra um ticket na nossa comunidade.</p>
+                                    <h3 class="text-white font-bold" data-i18n="tut_4_box_title">Não apareceu ou deu
+                                        algum erro?</h3>
+                                    <p class="text-slate-400 text-sm" data-i18n="tut_4_box_desc">Tente reinstalar o
+                                        script. Se o problema persistir, abra um ticket na nossa comunidade.</p>
                                 </div>
                                 <a href="https://discord.gg/6wrtGpt9bg" target="_blank" rel="noreferrer"
                                     class="shrink-0 flex items-center gap-2 bg-[#5865F2] hover:bg-[#4752C4] text-white px-6 py-3 rounded-xl font-bold transition-all shadow-lg shadow-[#5865F2]/20 hover:-translate-y-1">
@@ -777,7 +792,7 @@
                                         <path
                                             d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.31,60,73.31,53s5-12.74,11.43-12.74S96.3,46,96.19,53,91.08,65.69,84.69,65.69Z" />
                                     </svg>
-                                    Suporte via Discord
+                                    <span data-i18n="tut_4_btn">Suporte via Discord</span>
                                 </a>
                             </div>
                         </div>
@@ -793,20 +808,186 @@
                 <i data-lucide="download" class="w-6 h-6"></i>
             </div>
         </div>
-        <p class="text-slate-400 font-medium">Projeto Open Source criado por <span class="text-white font-bold">Face
-                Off</span>.</p>
-        <p class="mt-2 text-xs text-slate-600 max-w-md mx-auto">Este projeto tem fins educacionais e não possui
-            afiliação oficial com a ByteDance, TikTok ou TikWM.</p>
+        <p class="text-slate-400 font-medium" data-i18n="footer_1">Projeto Open Source criado por <span
+                class="text-white font-bold">Face Off</span>.</p>
+        <p class="mt-2 text-xs text-slate-600 max-w-md mx-auto" data-i18n="footer_2">Este projeto tem fins educacionais
+            e não possui afiliação oficial com a ByteDance, TikTok ou TikWM.</p>
     </footer>
 
     <script>
         lucide.createIcons();
 
+        const translations = {
+            pt: {
+                nav_overview: "Visão Geral",
+                nav_docs: "Documentação & Instalação",
+                nav_github: "GitHub Repo",
+                nav_discord: "Discord",
+                mobile_overview: "Visão Geral",
+                mobile_docs: "Documentação & Instalação",
+                mobile_github: "Ver no GitHub",
+                mobile_discord: "Comunidade",
+                current_version_prefix: "Versão atual ",
+                hero_title: "Baixe vídeos do TikTok <br/>\n<span class=\"text-transparent bg-clip-text bg-gradient-to-r from-primary via-rose-400 to-orange-400\">como um Pro.</span>",
+                hero_subtitle: "O Userscript definitivo. Injeta uma UI minimalista diretamente no site. Sem anúncios, em qualidade HD, sem marcas d'água e 100% open-source.",
+                hero_btn_install: "Instalar Agora",
+                hero_btn_tamper: "Obter Tampermonkey",
+                mockup_text: "Testando o novo Tik Downloader! 🚀✨",
+                mockup_tooltip: "Baixar Sem Marca D'água",
+                stat_1_desc: "Gratuito",
+                stat_2_desc: "Qualidade Máxima",
+                stat_3_desc: "Marcas d'Água",
+                stat_4_desc: "Source",
+                flow_title: "Fluxo de Trabalho Elegante",
+                flow_subtitle: "Esqueça sites lotados de anúncios. A mágica acontece diretamente na página.",
+                flow_1_title: "Injeção Limpa",
+                flow_1_desc: "O Client Loader insere um botão nativo no DOM do TikTok, sem quebrar o layout original.",
+                flow_2_title: "Bypass de CORS",
+                flow_2_desc: "O script comunica-se com a API do TikWM em segundo plano de forma invisível via Tampermonkey.",
+                flow_3_title: "Download Direto",
+                flow_3_desc: "O vídeo em HD é entregue diretamente no seu navegador, com barra de progresso em tempo real.",
+                tech_title: "Tecnologia Embarcada",
+                tech_subtitle: "Recursos de nível enterprise dentro de um Userscript.",
+                tech_1_title: "OTA Updates",
+                tech_1_desc: "Nosso Client Loader busca a lógica no GitHub silenciosamente. Se o script quebrar, você recebe a correção instantaneamente.",
+                tech_2_title: "Performance",
+                tech_2_desc: "Escrito em Vanilla JS. Sem bibliotecas pesadas como jQuery ou React no client-side. Impacto zero no navegador.",
+                tech_3_title: "Tratamento de Erros",
+                tech_3_desc: "Usamos UI de Toast integrada para informar se o vídeo foi deletado, é privado ou se houve erro de rede.",
+                tech_4_title: "Internacionalização",
+                tech_4_desc: "O script detecta o idioma do seu navegador nativamente adaptando-se para Português ou Inglês.",
+                tech_5_title: "Extração Dinâmica",
+                tech_5_desc: "O arquivo não é salvo como 'video.mp4'. Usamos Regex para extrair o @usuario para uma nomenclatura perfeita.",
+                tech_6_title: "Transparente",
+                tech_6_desc: "Código aberto. Sem ofuscação, sem rastreadores. Você pode ler o que cada linha faz no nosso repositório.",
+                faq_title: "Dúvidas Frequentes",
+                faq_1_q: "Isso funciona no celular?",
+                faq_1_a: "O script foi desenhado para navegadores Desktop (Chrome, Edge, Firefox, Safari) utilizando extensões gerenciadoras. Navegadores mobile padrão geralmente não suportam extensões como Tampermonkey nativamente.",
+                faq_2_q: "A minha conta do TikTok pode ser banida?",
+                faq_2_a: "Não. O script atua no cliente (seu navegador) apenas lendo a URL pública do vídeo e fazendo o download externamente. Ele não interage com sua conta logada.",
+                faq_3_q: "Por que usar o 'Loader' em vez do código inteiro?",
+                faq_3_a: "O código fonte muda frequentemente para acompanhar as atualizações do TikTok. O Loader faz a atualização silenciosa para você não precisar reinstalar manualmente.",
+                tut_title: "Instalação Simples.",
+                tut_subtitle: "Nós usamos a arquitetura de <strong>Client Loader (Stub)</strong>.<br/>Você instala apenas um cabeçalho pequeno que busca sempre a versão mais recente e segura direto do nosso GitHub.",
+                tut_1_title: "1. O Motor de Execução",
+                tut_1_desc: "Para rodar qualquer script na web, você precisa de um gerenciador. O <strong>Tampermonkey</strong> é o mais seguro e utilizado do mundo.",
+                tut_1_btn: "Instalar Tampermonkey",
+                tut_2_title: "2. Instalação Expressa",
+                tut_2_badge: "Recomendado",
+                tut_2_desc: "Com o Tampermonkey instalado, basta clicar no botão abaixo. O navegador irá interceptar o link e abrir a tela de instalação automaticamente.",
+                tut_2_btn: "Instalar Tik Downloader",
+                tut_3_title: "3. Instalação Manual",
+                tut_3_desc: "Prefere o método raiz? Crie um novo script no painel do Tampermonkey, apague tudo que estiver lá e cole o <strong>Client Loader</strong> abaixo:",
+                tut_3_copy: "Copiar Código",
+                tut_4_title: "4. Verificação & Suporte",
+                tut_4_desc: "Após a instalação, dê um <strong>F5</strong> nesta página ou acesse o seu TikTok. Nossa aplicação deverá aparecer na lateral esquerda da tela. Se apareceu, parabéns! Você está com a última versão funcionando perfeitamente.",
+                tut_4_box_title: "Não apareceu ou deu algum erro?",
+                tut_4_box_desc: "Tente reinstalar o script. Se o problema persistir, abra um ticket na nossa comunidade.",
+                tut_4_btn: "Suporte via Discord",
+                footer_1: "Projeto Open Source criado por <span class=\"text-white font-bold\">Face Off</span>.",
+                footer_2: "Este projeto tem fins educacionais e não possui afiliação oficial com a ByteDance, TikTok ou TikWM.",
+                copied: "Copiado!"
+            },
+            en: {
+                nav_overview: "Overview",
+                nav_docs: "Docs & Installation",
+                nav_github: "GitHub Repo",
+                nav_discord: "Discord",
+                mobile_overview: "Overview",
+                mobile_docs: "Docs & Installation",
+                mobile_github: "View on GitHub",
+                mobile_discord: "Community",
+                current_version_prefix: "Current version ",
+                hero_title: "Download TikTok videos <br/>\n<span class=\"text-transparent bg-clip-text bg-gradient-to-r from-primary via-rose-400 to-orange-400\">like a Pro.</span>",
+                hero_subtitle: "The ultimate Userscript. Injects a minimalist UI directly into the site. No ads, HD quality, no watermarks, and 100% open-source.",
+                hero_btn_install: "Install Now",
+                hero_btn_tamper: "Get Tampermonkey",
+                mockup_text: "Testing the new Tik Downloader! 🚀✨",
+                mockup_tooltip: "Download Without Watermark",
+                stat_1_desc: "Free",
+                stat_2_desc: "Max Quality",
+                stat_3_desc: "Watermarks",
+                stat_4_desc: "Source",
+                flow_title: "Elegant Workflow",
+                flow_subtitle: "Forget ad-cluttered websites. The magic happens right on the page.",
+                flow_1_title: "Clean Injection",
+                flow_1_desc: "The Client Loader inserts a native button into the TikTok DOM without breaking the original layout.",
+                flow_2_title: "CORS Bypass",
+                flow_2_desc: "The script communicates with the TikWM API in the background invisibly via Tampermonkey.",
+                flow_3_title: "Direct Download",
+                flow_3_desc: "The HD video is delivered directly to your browser, with a real-time progress bar.",
+                tech_title: "Embedded Technology",
+                tech_subtitle: "Enterprise-grade features inside a Userscript.",
+                tech_1_title: "OTA Updates",
+                tech_1_desc: "Our Client Loader fetches logic from GitHub silently. If the script breaks, you get the fix instantly.",
+                tech_2_title: "Performance",
+                tech_2_desc: "Written in Vanilla JS. No heavy libraries like jQuery or React on the client-side. Zero browser impact.",
+                tech_3_title: "Error Handling",
+                tech_3_desc: "We use an integrated Toast UI to inform if the video was deleted, is private, or if a network error occurred.",
+                tech_4_title: "Internationalization",
+                tech_4_desc: "The script natively detects your browser language, adapting to Portuguese or English.",
+                tech_5_title: "Dynamic Extraction",
+                tech_5_desc: "The file is not saved as 'video.mp4'. We use Regex to extract the @user for perfect naming.",
+                tech_6_title: "Transparent",
+                tech_6_desc: "Open source. No obfuscation, no trackers. You can read exactly what each line does in our repository.",
+                faq_title: "Frequently Asked Questions",
+                faq_1_q: "Does this work on mobile?",
+                faq_1_a: "The script is designed for Desktop browsers (Chrome, Edge, Firefox, Safari) using extension managers. Standard mobile browsers typically don't support extensions like Tampermonkey natively.",
+                faq_2_q: "Can my TikTok account get banned?",
+                faq_2_a: "No. The script acts on the client (your browser) only by reading the public video URL and downloading it externally. It does not interact with your logged-in account.",
+                faq_3_q: "Why use the 'Loader' instead of the full code?",
+                faq_3_a: "The source code changes frequently to match TikTok's updates. The Loader updates silently so you don't have to reinstall manually.",
+                tut_title: "Simple Installation.",
+                tut_subtitle: "We use the <strong>Client Loader (Stub)</strong> architecture.<br/>You install only a small header that always fetches the latest and safest version directly from our GitHub.",
+                tut_1_title: "1. The Execution Engine",
+                tut_1_desc: "To run any script on the web, you need a manager. <strong>Tampermonkey</strong> is the safest and most used worldwide.",
+                tut_1_btn: "Install Tampermonkey",
+                tut_2_title: "2. Express Installation",
+                tut_2_badge: "Recommended",
+                tut_2_desc: "With Tampermonkey installed, just click the button below. The browser will intercept the link and open the installation screen automatically.",
+                tut_2_btn: "Install Tik Downloader",
+                tut_3_title: "3. Manual Installation",
+                tut_3_desc: "Prefer the root method? Create a new script in the Tampermonkey dashboard, delete everything there, and paste the <strong>Client Loader</strong> below:",
+                tut_3_copy: "Copy Code",
+                tut_4_title: "4. Verification & Support",
+                tut_4_desc: "After installation, press <strong>F5</strong> on this page or visit TikTok. Our application should appear on the left side of the screen. If it did, congrats! You have the latest version running perfectly.",
+                tut_4_box_title: "Didn't appear or got an error?",
+                tut_4_box_desc: "Try reinstalling the script. If the issue persists, open a ticket in our community.",
+                tut_4_btn: "Discord Support",
+                footer_1: "Open Source project created by <span class=\"text-white font-bold\">Face Off</span>.",
+                footer_2: "This project is for educational purposes and has no official affiliation with ByteDance, TikTok, or TikWM.",
+                copied: "Copied!"
+            }
+        };
+
+        let currentLang = localStorage.getItem('tik_lang') || (navigator.language.toLowerCase().startsWith('pt') ? 'pt' : 'en');
+
+        function applyTranslations() {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[currentLang][key]) {
+                    el.innerHTML = translations[currentLang][key];
+                }
+            });
+            document.getElementById('lang-indicator').textContent = currentLang.toUpperCase();
+            document.getElementById('mobile-lang-indicator').textContent = currentLang.toUpperCase();
+            document.documentElement.lang = currentLang;
+
+            fetchVersion();
+        }
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'pt' ? 'en' : 'pt';
+            localStorage.setItem('tik_lang', currentLang);
+            applyTranslations();
+        }
+
+        applyTranslations();
+
         function switchTab(tabId) {
             document.querySelectorAll('.tab-content').forEach(tab => {
                 tab.classList.remove('active');
             });
-
             document.getElementById(tabId).classList.add('active');
 
             document.querySelectorAll('.nav-btn').forEach(btn => {
@@ -815,7 +996,6 @@
                     btn.classList.add('active');
                 }
             });
-
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
@@ -825,15 +1005,11 @@
 
             if (menu.classList.contains('hidden')) {
                 menu.classList.remove('hidden');
-                setTimeout(() => {
-                    menu.classList.remove('opacity-0');
-                }, 10);
+                setTimeout(() => menu.classList.remove('opacity-0'), 10);
                 icon.setAttribute('data-lucide', 'x');
             } else {
                 menu.classList.add('opacity-0');
-                setTimeout(() => {
-                    menu.classList.add('hidden');
-                }, 300);
+                setTimeout(() => menu.classList.add('hidden'), 300);
                 icon.setAttribute('data-lucide', 'menu');
             }
             lucide.createIcons();
@@ -879,8 +1055,8 @@
             try {
                 document.execCommand('copy');
 
-                const originalHTML = btn.innerHTML;
-                btn.innerHTML = '<i data-lucide="check" class="w-4 h-4 text-green-400"></i> <span class="text-green-400">Copiado!</span>';
+                const originalHTML = `<i data-lucide="copy" class="w-4 h-4"></i> <span data-i18n="tut_3_copy">${translations[currentLang].tut_3_copy}</span>`;
+                btn.innerHTML = `<i data-lucide="check" class="w-4 h-4 text-green-400"></i> <span class="text-green-400" data-i18n="copied">${translations[currentLang].copied}</span>`;
                 btn.classList.add('bg-green-500/20');
                 btn.classList.remove('bg-white/10');
                 lucide.createIcons();
@@ -891,15 +1067,14 @@
                     btn.classList.add('bg-white/10');
                     lucide.createIcons();
                 }, 2000);
-            } catch (err) {
-                console.error('Copy failed', err);
-            }
+            } catch (err) { }
 
             document.body.removeChild(textarea);
         }
 
         async function fetchVersion() {
             try {
+                const prefix = translations[currentLang].current_version_prefix;
                 let url = 'https://raw.githubusercontent.com/OFaceOff/Tiktok-Downloader/main/tikdownloader.user.js';
                 let response = await fetch(url + '?t=' + new Date().getTime());
 
@@ -912,19 +1087,16 @@
                     const text = await response.text();
                     const match = text.match(/@version\s+([0-9.]+)/);
                     if (match && match[1]) {
-                        document.getElementById('current-version-display').textContent = 'Versão atual ' + match[1];
+                        document.getElementById('current-version-display').innerHTML = '<span data-i18n="current_version_prefix">' + prefix + '</span>' + match[1];
                         return;
                     }
                 }
-
-                document.getElementById('current-version-display').textContent = 'Versão atual 3.0.0';
+                document.getElementById('current-version-display').innerHTML = '<span data-i18n="current_version_prefix">' + prefix + '</span>3.0.0';
             } catch (error) {
-                console.error('Erro', error);
-                document.getElementById('current-version-display').textContent = 'Versão atual 3.0.0';
+                const prefix = translations[currentLang].current_version_prefix;
+                document.getElementById('current-version-display').innerHTML = '<span data-i18n="current_version_prefix">' + prefix + '</span>3.0.0';
             }
         }
-
-        fetchVersion();
     </script>
 </body>
 
